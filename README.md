@@ -63,9 +63,9 @@ node tests/cloud-worker.test.mjs
 | `worker/cloud-worker.js` | Cloudflare Worker: cloud-archive relay |
 | `data/atlas/` | Encrypted cloud archives (opaque blobs) |
 
-Before changing storage or sync code, read **[docs/invariants.md](docs/invariants.md)** — several formats are frozen because existing atlases depend on them. Design history lives in `docs/adr/` (in Chinese; summaries in the docs).
+Before changing storage or sync code, read **[docs/invariants.md](docs/invariants.md)** — several formats are frozen because existing atlases depend on them. The mechanics — service-worker cache versioning, the two keys derived from one passphrase, TOFU key pinning, multi-device merge — are explained in **[docs/how-it-works.md](docs/how-it-works.md)** (in Chinese). Design history lives in `docs/adr/` (also Chinese).
 
-改存储或同步代码前先读 **[docs/invariants.md](docs/invariants.md)**：若干格式已冻结，老图鉴依赖它们。设计沿革见 `docs/adr/`（中文）。
+改存储或同步代码前先读 **[docs/invariants.md](docs/invariants.md)**：若干格式已冻结，老图鉴依赖它们。SW 缓存版本机制、口令双钥派生、TOFU 钉扎、多端合并这些原理，见 **[docs/how-it-works.md](docs/how-it-works.md)**。设计沿革见 `docs/adr/`。
 
 ## License
 
