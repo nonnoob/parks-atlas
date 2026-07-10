@@ -4,14 +4,14 @@
    Worker) is never intercepted.
    Any change to this file must bump CACHE_VERSION, or old caches linger and
    the new precache never installs. */
-const CACHE_VERSION = 'atlas-v1';
+const CACHE_VERSION = 'atlas-v2';
 const PRECACHE = [
   './',
   'index.html',
   'config.js?v=1',
   'data.js?v=1',
-  'i18n.js?v=1',
-  'app.js?v=1',
+  'i18n.js?v=2',
+  'app.js?v=2',
   'ledger.js?v=1',
   'scratchable.js?v=1',
   'd3.min.js?v=1',

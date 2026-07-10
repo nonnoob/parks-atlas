@@ -138,6 +138,7 @@ function renderStatic(){
   $('#of').textContent=t('ofParks');
   $('#btnShare').textContent=t('share');
   $('#btnLang').textContent='🌐 '+t('langBtn');
+  $('#btnKey').title=t('switchKey');
   $('#legendOff').textContent=t('legendOff');
   $('#legendOn').textContent=t('legendOn');
   $('#foot').innerHTML='<a id="helpL" style="opacity:.7">'+t('helpLink')+'</a>';
@@ -151,6 +152,18 @@ function setLang(l){
   if(MODE==='state'&&curState)enterState(curState);
 }
 $('#btnLang').onclick=()=>setLang(T.lang==='zh'?'en':'zh');
+
+/* ---------- 切换口令：清会话口令与内存态，回全美视图重过闸门 ----------
+   多口令多图鉴的入口（ADR-0012）：换口令 = 换图鉴。本地各槽数据不动 */
+$('#btnKey').onclick=async()=>{
+  if(SHARE)return;
+  try{sessionStorage.removeItem('np_pass');}catch(e){}
+  ledger.lock();LSKEY=null;await ledger.load('');
+  closeCallout();closeSheet();
+  if(MODE==='state')backToNation();
+  renderBanner();renderProgress();renderRegions();paintNational();
+  gate();
+};
 
 /* ---------- progress / tiers / regions ---------- */
 function tierOf(n){for(const row of TIERS)if(n>=row[0])return T.tier(row);return T.tier(TIERS[TIERS.length-1]);}
@@ -396,6 +409,7 @@ async function init(){
   renderStatic();
   if(!ledger.supported){$('#banner').className='banner show tamper';$('#banner').textContent=t('noCrypto');}
   SHARE=(await ledger.load(location.hash))==='share';
+  if(SHARE)$('#btnKey').style.display='none';
   renderBanner();renderProgress();renderRegions();
   setMode('nation');
   await buildNational();

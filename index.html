@@ -170,6 +170,7 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
 <header class="bar">
   <div class="htitle" id="htitle">国家公园图鉴<small id="htsub">U.S. NATIONAL PARKS</small></div>
   <div class="spacer"></div>
+  <button class="iconbtn" id="btnKey">🔑</button>
   <button class="iconbtn" id="btnLang">🌐 EN</button>
   <button class="iconbtn" id="btnSound">🔊</button>
   <button class="iconbtn" id="btnShare">分享</button>
@@ -209,10 +210,10 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
 <script src="topojson.min.js?v=1"></script>
 <script src="config.js?v=1"></script>
 <script src="data.js?v=1"></script>
-<script src="i18n.js?v=1"></script>
+<script src="i18n.js?v=2"></script>
 <script src="ledger.js?v=1"></script>
 <script src="scratchable.js?v=1"></script>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 <script>
 try{const mf={name:'Parks Atlas',short_name:'Parks Atlas',start_url:'.',display:'standalone',background_color:'#0b1f2a',theme_color:'#0b1f2a',icons:[{src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" rx="96" fill="#0b1f2a"/><text x="50%" y="54%" font-size="300" text-anchor="middle" dominant-baseline="middle">🏞️</text></svg>'),sizes:'512x512',type:'image/svg+xml'}]};const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));document.head.appendChild(l);}catch(e){}
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});

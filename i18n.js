@@ -43,6 +43,7 @@ zh:{
   holdStamp:'长按盖章打卡 🅿️', holdUnstamp:'长按取消打卡',
   holdRemoveBad:'长按删除异常记录', holdDelete:'长按删除',
   npSuffix:p=>p.en+' National Park', npSuffixShort:p=>p.en+' NP',
+  switchKey:'切换口令',
   langBtn:'EN'
 },
 en:{
@@ -83,6 +84,7 @@ en:{
   holdStamp:'Hold to stamp 🅿️', holdUnstamp:'Hold to undo check-in',
   holdRemoveBad:'Hold to delete invalid record', holdDelete:'Hold to delete',
   npSuffix:p=>'National Park · '+p.zh, npSuffixShort:p=>p.zh,
+  switchKey:'Switch passphrase',
   langBtn:'中'
 }};
 const REGION_EN={'东北':'Northeast','东南':'Southeast','落基山':'Rockies','西南':'Southwest','加州':'California','西北':'Northwest','大平原':'Great Plains','中西部':'Midwest','阿拉斯加':'Alaska','夏威夷':'Hawaii','属地':'Territories'};
