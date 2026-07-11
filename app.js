@@ -153,16 +153,32 @@ function setLang(l){
 }
 $('#btnLang').onclick=()=>setLang(T.lang==='zh'?'en':'zh');
 
-/* ---------- 切换口令：清会话口令与内存态，回全美视图重过闸门 ----------
-   多口令多图鉴的入口（ADR-0012）：换口令 = 换图鉴。本地各槽数据不动 */
+/* ---------- 切换口令：先问后拆 ----------
+   多口令多图鉴的入口（ADR-0012）：换口令 = 换图鉴。本地各槽数据不动。
+   新口令过闸成功才切换并回全美视图；中途取消恢复原图鉴（尝试过程改动过
+   LSKEY/账本内存态，须用原口令重进还原） */
 $('#btnKey').onclick=async()=>{
   if(SHARE)return;
-  try{sessionStorage.removeItem('np_pass');}catch(e){}
-  ledger.lock();LSKEY=null;await ledger.load('');
+  let old=null;try{old=sessionStorage.getItem('np_pass');}catch(e){}
+  const oldKey=LSKEY;
   closeCallout();closeSheet();
+  let msg=null,pass=null;
+  while(true){
+    pass=await askGate(msg);
+    if(pass===null){
+      if(old)await enterWithPass(old);
+      else{LSKEY=oldKey;await ledger.load('');}
+      return;
+    }
+    const r=await enterWithPass(pass);
+    if(r===true)break;
+    if(r==='new'&&await confirmNew()){await createAtlas(pass);break;}
+    msg=r==='new'?null:'gateWrong';
+  }
+  try{sessionStorage.setItem('np_pass',pass);}catch(e){}
   if(MODE==='state')backToNation();
-  renderBanner();renderProgress();renderRegions();paintNational();
-  gate();
+  const p=ledger.purgeInvalid();
+  if(p){refreshAll();toast(t('purged',p));schedulePush();}
 };
 
 /* ---------- progress / tiers / regions ---------- */

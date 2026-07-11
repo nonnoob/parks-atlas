@@ -20,7 +20,7 @@ header.bar{display:flex;align-items:center;gap:10px;padding:10px 14px;position:s
 .htitle{font-weight:800;font-size:16px;letter-spacing:.5px;white-space:nowrap;flex:0 0 auto;background:linear-gradient(180deg,#f7e6b8,#e7c06a 78%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .htitle small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:2px;white-space:nowrap}
 .spacer{flex:1}
-.iconbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:7px 10px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .12s ease}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;height:32px;line-height:1;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:0 10px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .12s ease}
 .iconbtn:active{transform:scale(.94)}
 .iconbtn.gold{border-color:var(--gold2);color:var(--gold)}
 /* progress */
@@ -148,7 +148,7 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
   header.bar{gap:7px;padding:9px 11px}
   .htitle{font-size:15px}
   .htitle small{letter-spacing:1px;font-size:9.5px}
-  .iconbtn{padding:7px 9px;font-size:12px}
+  .iconbtn{height:30px;padding:0 9px;font-size:12px}
   .prog{margin:6px 11px 2px;padding:11px 13px}
   .big{font-size:26px}
   .regions{margin:7px 11px 0}
@@ -210,10 +210,10 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
 <script src="topojson.min.js?v=1"></script>
 <script src="config.js?v=1"></script>
 <script src="data.js?v=1"></script>
-<script src="i18n.js?v=2"></script>
+<script src="i18n.js?v=3"></script>
 <script src="ledger.js?v=1"></script>
 <script src="scratchable.js?v=1"></script>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 <script>
 try{const mf={name:'Parks Atlas',short_name:'Parks Atlas',start_url:'.',display:'standalone',background_color:'#0b1f2a',theme_color:'#0b1f2a',icons:[{src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" rx="96" fill="#0b1f2a"/><text x="50%" y="54%" font-size="300" text-anchor="middle" dominant-baseline="middle">🏞️</text></svg>'),sizes:'512x512',type:'image/svg+xml'}]};const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));document.head.appendChild(l);}catch(e){}
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});

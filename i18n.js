@@ -83,7 +83,7 @@ en:{
   highlights:'✨ Highlights: ', readonly:'👁 Read-only', litOn:'✓ Lit · ',
   holdStamp:'Hold to stamp 🅿️', holdUnstamp:'Hold to undo check-in',
   holdRemoveBad:'Hold to delete invalid record', holdDelete:'Hold to delete',
-  npSuffix:p=>'National Park · '+p.zh, npSuffixShort:p=>p.zh,
+  npSuffix:'National Park', npSuffixShort:'NP',
   switchKey:'Switch passphrase',
   langBtn:'中'
 }};
@@ -107,7 +107,7 @@ root.I18N={
   parkIntro(p){return lang==='zh'?p.intro:p.introEn;},
   parkHl(p){return lang==='zh'?p.hl:p.hlEn;},
   state(s){return lang==='zh'?s.zh:s.name;},
-  stateSub(s){return lang==='zh'?s.name:s.zh;},
+  stateSub(s){return lang==='zh'?s.name:s.ab;},
   tier(row){return lang==='zh'?row[1]:row[2];}
 };
 })(typeof window!=='undefined'?window:globalThis);
