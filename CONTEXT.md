@@ -58,6 +58,14 @@ _Avoid_: backup, cloud data
 Entering the passphrase on any device to fetch the cloud archive and continue checking in. Restore **adopts** the archived identity — it never creates a new one; only the "new atlas" confirmation mints identities. When a passphrase has no archive, that confirmation is required — so a typo can't silently spawn a new book.
 _Avoid_: log in, sync (that's what happens automatically after check-ins)
 
+**Gate (闸门)**:
+The passphrase prompt at the entrance — the only place a passphrase is ever typed. Passing it opens the atlas; dismissing it at app start leaves the visitor browsing with no atlas open (viewing only, no check-ins).
+_Avoid_: login dialog, lock screen
+
+**Switch passphrase (切换口令)**:
+The owner's action of leaving the current atlas to open another one through the gate. The current atlas stays open until the new passphrase actually passes the gate; cancelling the gate mid-switch returns to the current atlas unchanged.
+_Avoid_: lock, log out, switch account
+
 ## Views & map
 
 **National view (全美视图)**:
