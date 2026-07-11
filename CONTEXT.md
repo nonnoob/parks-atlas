@@ -31,8 +31,20 @@ The person an atlas belongs to; holds the passphrase; the only one who can check
 _Avoid_: user
 
 **Passphrase (口令)**:
-The secret the owner uses to authorize check-ins and to locate their cloud archive; entered once at the entrance and never again inside the game. **The passphrase IS the atlas**: one passphrase ↔ one independent atlas; different passphrases on the same device open their own atlases; the same passphrase on any device opens the same one. A never-seen passphrase only takes effect after the owner confirms "new atlas".
-_Avoid_: password
+The **root secret** — the identity, the archive encryption, and the lookup key all derive from it, and the passphrase itself is never stored or transmitted anywhere. Entered once at the entrance and never again inside the game. **The passphrase IS the atlas**: one passphrase ↔ one independent atlas; different passphrases on the same device open their own atlases; the same passphrase on any device opens the same one. A never-seen passphrase only takes effect after the owner confirms "new atlas".
+_Avoid_: password, private key (that's what the passphrase unlocks, not what it is)
+
+**Identity (身份)**:
+The signing capability that makes check-in records tamper-evident. Minted **exactly once**, at "new atlas" confirmation; it travels inside the cloud archive, so restoring on another device **adopts** the existing identity — it never mints a second one. The card fingerprint is its short public name.
+_Avoid_: account, key pair (implementation)
+
+**Lookup key (查找键)**:
+The atlas's public address in cloud storage. Any device computes the same lookup key from the passphrase alone — that is the entire mechanism behind "type the passphrase anywhere and the atlas comes back", with no account registry. It **locates** the archive but cannot decrypt it.
+_Avoid_: ID, file name, hash
+
+**Binding (绑定)**:
+The rule that a cloud archive belongs to the **first identity that wrote it**; writes by any other identity are rejected, which is why nobody without the passphrase can overwrite an atlas. Owners meet this word when a passphrase collides with an archive minted elsewhere ("该口令已绑定另一份图鉴"). A binding is never transferred.
+_Avoid_: lock, ownership transfer
 
 **Card fingerprint (编号)**:
 An atlas's short public identifier, shown on shared snapshots to tell sources apart.
@@ -43,7 +55,7 @@ The atlas's encrypted copy in a GitHub repo, updated automatically after each ch
 _Avoid_: backup, cloud data
 
 **Restore (恢复)**:
-Entering the passphrase on any device to fetch the cloud archive and continue checking in. When a passphrase has no archive, creating a fresh atlas requires the "new atlas" confirmation — so a typo can't silently spawn a new book.
+Entering the passphrase on any device to fetch the cloud archive and continue checking in. Restore **adopts** the archived identity — it never creates a new one; only the "new atlas" confirmation mints identities. When a passphrase has no archive, that confirmation is required — so a typo can't silently spawn a new book.
 _Avoid_: log in, sync (that's what happens automatically after check-ins)
 
 ## Views & map
