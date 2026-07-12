@@ -203,6 +203,14 @@ async function buildNational(){
   let us;try{us=window.__US||(window.__US=await d3.json('states-10m.json?v=1'));}catch(e){return buildListFallback(t('mapFailData'));}
   const W=960,H=600;host.innerHTML='';
   const svg=d3.select(host).append('svg').attr('id','map').attr('viewBox','0 0 '+W+' '+H);
+  /* 公园标记的灰化/光晕用 SVG 滤镜而非 CSS filter 函数：WebKit 对 SVG 子元素
+     忽略 filter 函数（算样式不渲染），url(#…) 引用两端都认（#5） */
+  const defs=svg.append('defs');
+  const fg=defs.append('filter').attr('id','pmark-gray');
+  fg.append('feColorMatrix').attr('type','saturate').attr('values','0');
+  fg.append('feComponentTransfer').append('feFuncA').attr('type','linear').attr('slope','0.6');
+  defs.append('filter').attr('id','pmark-glow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%')
+    .append('feDropShadow').attr('dx',0).attr('dy',0).attr('stdDeviation',2.2).attr('flood-color','#e7c06a').attr('flood-opacity',.95);
   const fc=topojson.feature(us,us.objects.states);usFeatures=fc.features;
   const proj=d3.geoAlbersUsa().fitSize([W-16,H-46],fc);const path=d3.geoPath(proj);
   stateEls={};markEls={};

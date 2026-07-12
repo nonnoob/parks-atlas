@@ -103,8 +103,8 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
 .state.done{fill:#4a5a3c}
 .state:hover{fill:#3d525f}
 .ab{fill:#aac7ce;font-size:12px;font-weight:800;text-anchor:middle;paint-order:stroke;stroke:#0b1f2a;stroke-width:2.5px;pointer-events:none}
-.pmark{font-size:15px;text-anchor:middle;cursor:pointer;filter:grayscale(1) opacity(.6);transition:filter .5s}
-.pmark.lit{filter:grayscale(0) opacity(1) drop-shadow(0 0 5px rgba(231,192,106,.95))}
+.pmark{font-size:15px;text-anchor:middle;cursor:pointer;filter:url(#pmark-gray)}
+.pmark.lit{filter:url(#pmark-glow)}
 .hintbar{ text-align:center;color:#6f99a4;font-size:12px;margin:2px 14px 0}
 /* STATE VIEW */
 #stateView{display:none;animation:fadein .3s}
@@ -159,7 +159,6 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
   .legend{padding:6px 10px 12px}
   .ab{font-size:17px;stroke-width:3px}
   .pmark{font-size:22px}
-  .pmark.lit{filter:grayscale(0) opacity(1) drop-shadow(0 0 6px rgba(231,192,106,1))}
   /* state view a touch tighter */
   .sv-head{margin:6px 11px 4px}
   .sv-stage{margin:8px 11px}
@@ -213,7 +212,7 @@ svg#map{display:block;width:100%;height:auto;touch-action:manipulation}
 <script src="i18n.js?v=3"></script>
 <script src="ledger.js?v=1"></script>
 <script src="scratchable.js?v=1"></script>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=4"></script>
 <script>
 try{const mf={name:'Parks Atlas',short_name:'Parks Atlas',start_url:'.',display:'standalone',background_color:'#0b1f2a',theme_color:'#0b1f2a',icons:[{src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" rx="96" fill="#0b1f2a"/><text x="50%" y="54%" font-size="300" text-anchor="middle" dominant-baseline="middle">🏞️</text></svg>'),sizes:'512x512',type:'image/svg+xml'}]};const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));document.head.appendChild(l);}catch(e){}
 if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});
